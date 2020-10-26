@@ -1,0 +1,26 @@
+GITHUB REPO LINK
+https://github.com/qaboxletstest/Cypress-Demo
+
+Default Folder Structure
+1. fixtures - external pieces of static data 
+2. integration - In this folder, you would create your test files
+
+Test files may be written as
+1 .js
+2. .jsx
+3. .coffee
+4. .cjsx
+
+3. plugins - Plugins are used to extend Cypress Behavior. These contains custom plugins to run in a Node server
+4. support - to put reusable code 
+
+A. Execution
+    <!-- bundled support file -->
+    <script src="support/index.js"></script>
+    <!-- bundled first spec file, second spec file, etc -->
+    <script src="integration/spec-a.js"></script>
+    <script src="integration/spec-b.js"></script>
+    ...
+    <script src="integration/spec-n.js"></script>
+B. window.postMessage()
+C. WebPack
