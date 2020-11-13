@@ -7,7 +7,7 @@
     "test": "cypress open"
   },
   "keywords": [],
-  "author": "",
+  "author": "QA BOX LET'S TEST",
   "license": "ISC",
   "dependencies": {
     "cypress": "^5.4.0"

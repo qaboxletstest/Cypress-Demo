@@ -1,4 +1,5 @@
 /// <reference types="cypress" />
+/// <reference types="../../support" />
 
 context('Actions', () => {
   beforeEach(() => {
