@@ -1,8 +1,11 @@
 /// <reference types="cypress" />
+/// <reference types="../../support" />
 
 context('Aliasing', () => {
   beforeEach(() => {
     cy.visit('https://example.cypress.io/commands/aliasing')
+    cy.focused().click()
+    cy.login
   })
 
   it('.as() - alias a DOM element for later use', () => {
