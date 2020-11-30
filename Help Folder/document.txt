@@ -1,0 +1,17 @@
+HTML DOCUMENT COMMANDS
+
+1. HTML DOCUMENT - is a document that gets created using HTML 
+(i.e. Hypertext markup language).  
+
+Head of an HTML Document
+Body of an HTML Document
+
+2. DOCUMENT COMMANDS - CY.DOCUMENT()
+    a. title
+    b. cookies - create , read, update & clear cookies - document.cookie
+    c. viewport - Using Cypress.$()
+
+3. DIRECT CY COMMANDS
+    a. CY.TITLE()
+    b. COOKIES - CY.GETCOOKIE(), CY.GETCOOKIES(), CY.SETCOOKIE(), CY.CLEARCOOKIE(), CY.CLEARCOOKIES()
+    c. VIEWPORT - CY.VIEWPORT()
