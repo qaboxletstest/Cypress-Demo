@@ -2,7 +2,7 @@ describe('GET & CONTAINS', () => {
 
     beforeEach(() => {
 
-        cy.visit('http://127.0.0.1:5500/cygetcontains.html')
+        cy.visit('http://127.0.0.1:5500/Help%20Folder/cygetcontains.html')
 
     })
 
@@ -14,8 +14,6 @@ describe('GET & CONTAINS', () => {
 
     })
 
- 
-
     it('GET - Limit Scope - Example, scope is changed to fieldset(id="GETCOMMAND") from Document', () => {
 
         cy.get('fieldset#GETCOMMAND').within(div => {
@@ -25,8 +23,6 @@ describe('GET & CONTAINS', () => {
         })
 
     })
-
- 
 
     it('GET - MULTIPLE ELEMENT - PART 1', () => {
 
@@ -43,10 +39,7 @@ describe('GET & CONTAINS', () => {
         cy.get('button').last().click()
 
     })
-
- 
-
-    it('GET - MULTIPLE ELEMENT - PART 2', () => {
+    it.only('GET - MULTIPLE ELEMENT - PART 2', () => {
 
         // OTHER DOM TRAVERSING METHODS ARE - children, closest, find, filter,
 
@@ -75,11 +68,13 @@ describe('GET & CONTAINS', () => {
             btn.hide()
 
         })
+        
+        cy.get('span').each(spn => {
 
+            cy.log(spn.text())
+
+        })
     })
-
- 
-
     it('CONTAINS with Text', () => {
 
         cy.contains('SPAN ONE').click()
@@ -87,9 +82,6 @@ describe('GET & CONTAINS', () => {
         cy.contains('SPAN TWO').click()
 
     })
-
- 
-
     it('CONTAINS with Text & Selector', () => {
 
         cy.contains('span', 'FIND ME').click()
@@ -99,16 +91,11 @@ describe('GET & CONTAINS', () => {
         // cy.get('span:contains("FIND ME")').click()
 
     })
-
- 
-
     it('CONTAINS with Value', () => {
 
         cy.get('form').contains('Submit the form').click()
 
     })
-
- 
 
     it('CONTAINS with RegEx', () => {
 
@@ -117,8 +104,6 @@ describe('GET & CONTAINS', () => {
         cy.contains(/^add$/i).click() // Clicks the second button now
 
     })
-
- 
 
     it('CONTAINS - Element preference order', () => {
 
