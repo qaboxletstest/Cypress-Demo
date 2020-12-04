@@ -1,4 +1,4 @@
-describe('GET & CONTAINS', () => {
+describe('WEB ELEMENT COMMANDS - GET, CONTAINS & DOM TRAVERSING METHODS', () => {
 
     beforeEach(() => {
 
@@ -68,7 +68,7 @@ describe('GET & CONTAINS', () => {
             btn.hide()
 
         })
-        
+
         cy.get('span').each(spn => {
 
             cy.log(spn.text())
