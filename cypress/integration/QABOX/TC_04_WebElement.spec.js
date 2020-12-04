@@ -9,12 +9,14 @@ describe('WEB ELEMENT COMMANDS - GET, CONTAINS & DOM TRAVERSING METHODS', () => 
     it('GET - SINGLE ELEMENT', () => {
 
         cy.get('input[name="Channel Name"]').type('QA BOX LET\'S TEST')
-
+        // cy.get('input[name="date"]').type('17-07-2020')
         cy.get('input[name="date"]').type('2020-07-17')
 
     })
 
     it('GET - Limit Scope - Example, scope is changed to fieldset(id="GETCOMMAND") from Document', () => {
+
+        // cy.get('button').click({ multiple: true }) // errors out
 
         cy.get('fieldset#GETCOMMAND').within(div => {
 
@@ -39,7 +41,7 @@ describe('WEB ELEMENT COMMANDS - GET, CONTAINS & DOM TRAVERSING METHODS', () => 
         cy.get('button').last().click()
 
     })
-    it.only('GET - MULTIPLE ELEMENT - PART 2', () => {
+    it('GET - MULTIPLE ELEMENT - PART 2', () => {
 
         // OTHER DOM TRAVERSING METHODS ARE - children, closest, find, filter,
 
@@ -49,7 +51,7 @@ describe('WEB ELEMENT COMMANDS - GET, CONTAINS & DOM TRAVERSING METHODS', () => 
 
        // cy.get('fieldset#GETCOMMAND').within(div => {
 
-        //     cy.get(':checkbox').check({ multiple: true })
+        //     cy.get('button').check({ multiple: true })
 
         // })
 
@@ -76,7 +78,7 @@ describe('WEB ELEMENT COMMANDS - GET, CONTAINS & DOM TRAVERSING METHODS', () => 
         })
     })
     it('CONTAINS with Text', () => {
-
+        
         cy.contains('SPAN ONE').click()
 
         cy.contains('SPAN TWO').click()
@@ -84,11 +86,11 @@ describe('WEB ELEMENT COMMANDS - GET, CONTAINS & DOM TRAVERSING METHODS', () => 
     })
     it('CONTAINS with Text & Selector', () => {
 
-        cy.contains('span', 'FIND ME').click()
+        // cy.contains('span', 'FIND ME').click()
 
-        cy.contains('button', 'FIND ME').click()
+        // cy.contains('button', 'FIND ME').click()
 
-        // cy.get('span:contains("FIND ME")').click()
+        cy.get('span:contains("FIND ME")').click()
 
     })
     it('CONTAINS with Value', () => {
@@ -99,13 +101,13 @@ describe('WEB ELEMENT COMMANDS - GET, CONTAINS & DOM TRAVERSING METHODS', () => 
 
     it('CONTAINS with RegEx', () => {
 
-        cy.contains('Add').click() //Always clicks the first button
+        // cy.contains('Add').click() //Always clicks the first button
 
         cy.contains(/^add$/i).click() // Clicks the second button now
 
     })
 
-    it('CONTAINS - Element preference order', () => {
+    it.only('CONTAINS - Element preference order', () => {
 
         cy.contains('Search').click()
 
