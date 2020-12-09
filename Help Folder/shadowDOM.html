@@ -106,7 +106,7 @@
     <script>
         function attachShadowDom() {
             const shadowHost = document.getElementById('shadowHost')
-            const shadowRootElement = shadowHost.attachShadow({ mode: 'open' })
+            const shadowRootElement = shadowHost.attachShadow({ mode: 'closed' })
             shadowRootElement.innerHTML = `
             <h2>I belong to Shadow DOM</h1>
             <label for="name">Name</label>
