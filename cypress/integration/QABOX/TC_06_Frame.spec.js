@@ -1,6 +1,6 @@
 describe('Frame Suite', () => {
 
-    it.only('Type into element inside a frame', () => {
+    it('Type into element inside a frame', () => {
        cy.visit('http://127.0.0.1:5500/Help%20Folder/iframePage.html')
        cy.get('input[name="Channel Name"]').clear().type('QA BOX LET\'S TEST')
     });
@@ -21,7 +21,7 @@ describe('Frame Suite', () => {
         })
     });
 
-    it.only('Nested Frames - Fetch the text - JavaScript Way', () => {
+    it('Nested Frames - Fetch the text - JavaScript Way', () => {
         cy.visit('https://the-internet.herokuapp.com/nested_frames')
         cy.get('frame[src="/frame_top"]').within($frame => {
             const [frame_top] = $frame.get()
@@ -31,9 +31,8 @@ describe('Frame Suite', () => {
         })
     })
 
-    it('Nested Frames - Fetch the text - jQuery Way', () => {
-        // $('frame[src="/frame_top"]').contents().
-        //find('frame[src="/frame_middle"]').contents().find('div#content').text()
+    it.only('Nested Frames - Fetch the text - jQuery Way', () => {
+        // $('frame[src="/frame_top"]').contents().find('frame[src="/frame_middle"]').contents().find('div#content').text()
         cy.visit('https://the-internet.herokuapp.com/nested_frames')
         cy.get('frame[src="/frame_top"]').within($frame => {
             cy.wrap($frame.contents().find('frame[src="/frame_middle"]')).within(fr => {

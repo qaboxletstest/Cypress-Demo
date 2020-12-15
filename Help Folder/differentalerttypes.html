@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Different Alert Types</title>
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/base/jquery-ui.css"
+        type="text/css" media="all" />
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.5.min.js" type="text/javascript"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js" type="text/javascript"></script>
+    <style>
+        body {
+            background-color: sienna;
+        }
+
+        fieldset {
+            border: 2px solid darkorange;
+            margin: 10px;
+            padding: 20px;
+            background-color: white;
+        }
+
+        div#container {
+            border: 5px solid coral;
+            margin: 20px;
+            padding: 20px;
+            background-color: seashell;
+        }
+
+        ul {
+            direction: rtl;
+        }
+
+        h1,
+        h2,
+        legend,
+        a#channel {
+            text-align: center;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            color: maroon;
+            text-decoration: none;
+            font-size: 50px;
+            font-weight: bolder;
+            letter-spacing: 5px;
+        }
+
+        h2,
+        legend {
+            font-size: 40px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            text-align: left;
+            letter-spacing: 1px;
+        }
+
+        span,
+        label,
+        a {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 25px;
+            letter-spacing: 1px;
+            color: teal;
+        }
+
+        button {
+            border-radius: 5px;
+            background-color: yellowgreen;
+            color: white;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <h1><a id="channel" href="https://www.youtube.com/c/qaboxletstest/playlists">QA BOX LET'S TEST</a></h1>
+        <ul>
+            <li><a href="https://youtu.be/7iZwZ1xhnVw" target="_blank">CSS SELECTORS</a></li>
+            <li><a href="https://www.youtube.com/playlist?list=PLMZdod-kiMhL-b0OqCEt4Ld6faDtOVeGZ"
+                    target="_blank">JQUERY FOR CYPRESS</a></li>
+            <li><a href="https://youtube.com/playlist?list=PLMZdod-kiMhLl5y1G14nzXk-PUEs4mmyx" target="_blank">MOCHA,
+                    CHAI, SINON & CHAI-JQUERY</a></li>
+            <li><a href="https://www.youtube.com/playlist?list=PLMZdod-kiMhJnRl689MsoOzgbBpUGvSzz"
+                    target="_blank">XPATH</a></li>
+            <li><a href="https://youtube.com/playlist?list=PLMZdod-kiMhKBxYSWwp7uqHc7zJZbFnRf" target="_blank">NODEJS
+                    BASICS</a></li>
+            <li><a href="https://youtube.com/playlist?list=PLMZdod-kiMhK7q5R6W-owyNhxHUJ3pf1Y"
+                    target="_blank">JAVASCRIPT</a>
+            </li>
+        </ul>
+        <fieldset>
+            <legend>POP UPS - Alert | Confirm | Prompt | Modal Dialog | Window</legend>
+            <button id="alert" onclick="raiseAlertBox()">RAISE ALERT BOX</button>
+            <button id="miltiplealert" onclick="raiseMulAlertBox()">RAISE MULTIPLE ALERT BOX</button>
+            <button id="confirm" onclick="raiseConfirmBox()">RAISE CONFIRM BOX</button>
+            <button id="prompt" onclick="raisePromptBox()">RAISE PROMPT BOX</button>
+            <button id="cusdiag" onclick="raiseCustomisedModalDialogBox()">MODAL DIALOG FROM HIDDEN FIELDS</button>
+            <button id="moddiag" onclick="custom_alert('MODAL DIALOG', 'MODAL DIALOG FROM FUNCTION')">MODAL DIALOG FROM
+                FUNCTION</button>
+            <button id="winpop" onclick="createPopupWin('https://www.youtube.com/c/qaboxletstest/', 
+                        'QA BOX LETS TEST YOUTUBE CHANNEL', 900, 650);">
+                WINDOW POP UP
+            </button>
+        </fieldset>
+        <fieldset>
+            <legend>Outcome</legend>
+            <div id="confirmdiag"></div>
+        </fieldset>
+        <div id="dialog" title="CUSTOMISED MODAL DIALOG BOX" hidden>
+            <form action="">
+                <table>
+                    <tr>
+                        <td><label for="name">Username</label></td>
+                        <td><input type="text" name="name" id="name" placeholder="Enter username"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="password">Password</label></td>
+                        <td><input type="password" name="password" id="password" placeholder="Enter password"></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+    <script>
+        function raiseAlertBox() {
+            window.alert('I\'m an Alert Box')
+            // window.alert = function () {
+            //     raiseCustomisedModalDialogBox()
+            // }
+            // window.alert()
+        }
+        function raiseMulAlertBox() {
+            window.alert('First Alert Box')
+            window.alert('Second Alert Box')
+            window.alert('Third Alert Box')
+        }
+        function raiseConfirmBox() {
+            let dec = window.confirm('I\'m a Confirm Box')
+            const el = document.getElementById('confirmdiag')
+            if (dec == true) {
+                el.innerHTML = "<h2>CONFIRM - You pressed OK!</h2>";
+            } else {
+                el.innerHTML = "<h2>CONFIRM - You pressed Cancel!</h2>";
+            }
+        }
+        function raisePromptBox() {
+            let prom = window.prompt('I\'m a Prompt Box', 'Enter your name...')
+            const el = document.getElementById('confirmdiag')
+            if (prom != 'Enter your name...') {
+                el.innerHTML =
+                    "<h2>PROMPT - Hello " + prom + "! How are you today?</h2>";
+            } else {
+                el.innerHTML =
+                    "<h2>PROMPT - You left prompt box empty</h2>";
+            }
+        }
+        function raiseCustomisedModalDialogBox() {
+            const el = "<h2>MODAL DIALOG FROM HIDDEN FIELDS - You submitted username and password</h2>";
+            $('#dialog').dialog({
+                modal: true,
+                maxWidth: 600,
+                maxHeight: 500,
+                width: 600,
+                height: 250,
+                buttons: {
+                    'Submit': function () {
+                        $(this).dialog('close');
+                        $('div#confirmdiag').append(el)
+                    }
+                }
+            })
+        }
+
+        function custom_alert(message, title) {
+            const diag = $('div#confirmdiag')
+            const el1 = "<h2>MODAL DIALOG FROM FUNCTION - You closed the pop up by clicking Ok button</h2>";
+            const el2 = "<h2>MODAL DIALOG FROM FUNCTION - You closed the pop up by clicking Close button</h2>";
+            if (!title)
+                title = 'Alert';
+
+            if (!message)
+                message = 'No Message to Display.';
+
+            $('<div style="border:5px;border-radius:50px"></div>').html(message).dialog({
+                title: title,
+                resizable: false,
+                modal: true,
+                maxWidth: 600,
+                maxHeight: 500,
+                width: 600,
+                height: 500,
+                buttons: {
+                    'Ok': function () {
+                        $(this).dialog('close');
+                        diag.append(el1)
+                    },
+                    'Close': function () {
+                        $(this).dialog('close');
+                        diag.append(el2)
+                    }
+                }
+            });
+        }
+
+        function createPopupWin(pageURL, pageTitle,
+            popupWinWidth, popupWinHeight) {
+            var left = (screen.width);
+            var top = (screen.height);
+            var myWindow = window.open(pageURL, pageTitle,
+                'resizable=yes, width=' + popupWinWidth
+                + ', height=' + popupWinHeight + ', top='
+                + top + ', left=' + left);
+        } 
+    </script>
+</body>
+
+</html>
