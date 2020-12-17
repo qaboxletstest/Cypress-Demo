@@ -10,6 +10,7 @@
   "author": "QA BOX LET'S TEST",
   "license": "ISC",
   "dependencies": {
-    "cypress": "^5.4.0"
+    "cypress": "^5.4.0",
+    "cypress-xpath": "^1.6.1"
   }
 }

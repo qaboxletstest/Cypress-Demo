@@ -4,7 +4,6 @@ describe("XPath", () => {
   });
 
   it("GET & WITHIN", () => {
-    cy.visit("http://127.0.0.1:5500/cyxpath.html");
     cy.get("fieldset#grouptwo input[name='Channel Name']").type(
       "QA BOX LETS TEST"
     );
@@ -14,13 +13,14 @@ describe("XPath", () => {
     });
   });
   it.only("XPATH & WITHIN", () => {
-    // cy.xpath('//fieldset[@id="grouptwo"]//input[@name="Channel Name"]')
-    //     .type('QA BOX LETS TEST')
-    cy.xpath('//fieldset[@id="grouptwo"]').within(() => {
-      cy.xpath("//input[@name='Channel Name']").type("QA BOX LETS TEST");
-    });
-    // cy.xpath('//fieldset[@id="grouptwo"]')
-    //     .xpath("//input[@name='Channel Name']")
-    //     .type('QA BOX LETS TEST')
+    // cy.xpath('//fieldset[@id="grouptwo"]//input[@name="Channel Name"]').type(
+    //   "QA BOX LETS TEST"
+    // );
+    // cy.xpath('//fieldset[@id="grouptwo"]').within(() => {
+    //   cy.xpath(".//input[@name='Channel Name']").type("QA BOX LETS TEST");
+    // });
+    cy.xpath('//fieldset[@id="grouptwo"]')
+      .xpath(".//input[@name='Channel Name']")
+      .type("QA BOX LETS TEST 12345");
   });
 });
