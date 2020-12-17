@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enable XPath In Cypress</title>
+    <style>
+        body {
+            background-color: sienna;
+        }
+
+        div,
+        fieldset {
+            border: 2px solid darkorange;
+            margin: 10px;
+            padding: 20px;
+            background-color: thistle;
+        }
+
+        div#container {
+            border: 5px solid coral;
+            margin: 20px;
+            padding: 20px;
+            background-color: seashell;
+        }
+
+        ul {
+            direction: rtl;
+        }
+
+        h1,
+        a#channel {
+            text-align: center;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            color: maroon;
+            text-decoration: none;
+            font-size: xx-large;
+            font-weight: bolder;
+            letter-spacing: 5px;
+        }
+
+        span,
+        label,
+        a {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: large;
+            letter-spacing: 1px;
+        }
+
+        legend {
+            color: maroon;
+            letter-spacing: 1.5px;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        }
+
+        legend#main {
+            text-align: center;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-weight: bolder;
+            font-size: xx-large;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <h1><a id="channel" href="https://www.youtube.com/c/qaboxletstest/playlists">QA BOX LET'S TEST</a></h1>
+        <ul>
+            <li><a href="https://youtu.be/7iZwZ1xhnVw" target="_blank">CSS SELECTORS</a></li>
+            <li><a href="https://www.youtube.com/playlist?list=PLMZdod-kiMhL-b0OqCEt4Ld6faDtOVeGZ"
+                    target="_blank">JQUERY FOR
+                    CYPRESS</a></li>
+            <li><a href="https://youtube.com/playlist?list=PLMZdod-kiMhLl5y1G14nzXk-PUEs4mmyx" target="_blank">MOCHA,
+                    CHAI, SINON & CHAI-JQUERY</a></li>
+            <li><a href="https://www.youtube.com/playlist?list=PLMZdod-kiMhJnRl689MsoOzgbBpUGvSzz"
+                    target="_blank">XPATH</a>
+            </li>
+            <li><a href="https://youtube.com/playlist?list=PLMZdod-kiMhKBxYSWwp7uqHc7zJZbFnRf" target="_blank">NODEJS
+                    BASICS</a></li>
+            <li><a href="https://youtube.com/playlist?list=PLMZdod-kiMhK7q5R6W-owyNhxHUJ3pf1Y"
+                    target="_blank">JAVASCRIPT</a>
+            </li>
+        </ul>
+        <fieldset>
+            <legend id="main">XPATH WITH CYPRESS</legend>
+            <fieldset id="groupone">
+                <legend>GROUP ONE</legend>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td><label for="Channel Name">Name</label></td>
+                            <td><input type="text" name="Channel Name" placeholder="enter your channel name" /></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </fieldset>
+            <fieldset id="grouptwo">
+                <legend>GROUP TWO</legend>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td><label for="Channel Name">Name</label></td>
+                            <td><input type="text" name="Channel Name" placeholder="enter your channel name" /></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </fieldset>
+        </fieldset>
+    </div>
+</body>
+
+</html>
