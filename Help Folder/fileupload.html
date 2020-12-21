@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload</title>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.5.min.js" type="text/javascript"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
+    <style>
+        .test {
+            border: 5px solid coral;
+            margin: 20px;
+            padding: 20px;
+            background-color: seashell;
+            margin-left: 20%;
+        }
+
+        .files input {
+            outline: 2px dashed tomato;
+            outline-offset: -10px;
+            -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+            transition: outline-offset .15s ease-in-out, background-color .15s linear;
+            padding: 100px;
+            text-align: center !important;
+            margin: 0px;
+            width: 100% !important;
+        }
+
+        .files input:focus {
+            outline: 2px dashed crimson;
+            outline-offset: -10px;
+            -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+            transition: outline-offset .15s ease-in-out, background-color .15s linear;
+            border: 1px solid yellowgreen;
+        }
+
+        .files {
+            position: relative
+        }
+
+        .files:after {
+            pointer-events: none;
+            position: absolute;
+            top: 60px;
+            left: 0;
+            width: 50px;
+            right: 0;
+            height: 56px;
+            content: "";
+            background-image: url(https://image.flaticon.com/icons/png/128/109/109612.png);
+            display: block;
+            margin: 0 auto;
+            background-size: 100%;
+            background-repeat: no-repeat;
+        }
+
+        .color input {
+            background-color: peachpuff;
+        }
+
+        .files:before {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            pointer-events: none;
+            width: 100%;
+            right: 0;
+            height: 57px;
+            content: " or drag it here. ";
+            display: block;
+            margin: 0 auto;
+            color: blue;
+            font-weight: 600;
+            text-transform: capitalize;
+            text-align: center;
+        }
+
+        body {
+            background-color: sienna;
+        }
+
+        .span-file-upload {
+            display: inline-block;
+            padding: 6px 12px;
+            cursor: pointer;
+        }
+
+
+        fieldset {
+            border: 2px solid darkorange;
+            margin: 10px;
+            padding: 20px;
+            background-color: white;
+        }
+
+        div#mycontainer {
+            border: 5px solid coral;
+            margin: 20px;
+            padding: 20px;
+            background-color: seashell;
+        }
+
+        h1,
+        h2,
+        legend,
+        a#channel {
+            text-align: center;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            color: maroon;
+            text-decoration: none;
+            font-size: 50px;
+            font-weight: bolder;
+            letter-spacing: 5px;
+        }
+
+        h2,
+        legend {
+            font-size: 20px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            text-align: left;
+            letter-spacing: 2px;
+        }
+
+        span,
+        label,
+        a {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 25px;
+            letter-spacing: 1px;
+            color: teal;
+        }
+
+        button {
+            border-radius: 5px;
+            background-color: yellowgreen;
+            color: white;
+            font-size: 20px;
+        }
+
+        .holder_default {
+            width: 500px;
+            height: 150px;
+            border: 3px dashed #ccc;
+        }
+
+        #holder.hover {
+            width: 400px;
+            height: 150px;
+            border: 3px dashed #0c0 !important;
+        }
+
+        .hidden {
+            visibility: hidden;
+        }
+
+        .visible {
+            visibility: visible;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="mycontainer">
+        <h1><a id="channel" href="https://www.youtube.com/c/qaboxletstest/playlists">QA BOX LET'S TEST</a></h1>
+        <ul>
+            <li><a href="https://youtu.be/7iZwZ1xhnVw" target="_blank">CSS SELECTORS</a></li>
+            <li><a href="https://www.youtube.com/playlist?list=PLMZdod-kiMhL-b0OqCEt4Ld6faDtOVeGZ"
+                    target="_blank">JQUERY FOR
+                    CYPRESS</a></li>
+            <li><a href="https://youtube.com/playlist?list=PLMZdod-kiMhLl5y1G14nzXk-PUEs4mmyx" target="_blank">MOCHA,
+                    CHAI, SINON & CHAI-JQUERY</a></li>
+            <li><a href="https://www.youtube.com/playlist?list=PLMZdod-kiMhJnRl689MsoOzgbBpUGvSzz"
+                    target="_blank">XPATH</a>
+            </li>
+            <li><a href="https://youtube.com/playlist?list=PLMZdod-kiMhKBxYSWwp7uqHc7zJZbFnRf" target="_blank">NODEJS
+                    BASICS</a></li>
+            <li><a href="https://youtube.com/playlist?list=PLMZdod-kiMhK7q5R6W-owyNhxHUJ3pf1Y"
+                    target="_blank">JAVASCRIPT</a>
+            </li>
+        </ul>
+        <fieldset>
+            <legend>UPLOAD FILE IN LIGHT DOM</legend>
+            <h2>I belong to Regular/Light Dom</h1>
+                <label for="file">Add a file</label>
+                <input type="file" name="file" id="file-upload1"><br /><br />
+                <span id="fileName1" class="span-file-upload"></span><br />
+        </fieldset>
+        <fieldset>
+            <legend>UPLOAD FILE IN SHADOW DOM</legend>
+            <button onclick="attachShadowDom()">Add Shadow DOM</button>
+            <div id="shadowHost"></div>
+        </fieldset>
+        <fieldset>
+            <legend>UPLOAD MULTIPLE FILES</legend>
+            <div class="container test">
+                <div class="row">
+                    <form method="post" action="#" id="#">
+                        <div class="form-group files color ">
+                            <label>Upload Multiple Files </label>
+                            <input id="file-upload2" type="file" class="form-control" multiple>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>IMAGE DRAG & DROP</legend>
+            <div id="holder" style="" id="holder" class="holder_default">
+                <img src="" id="img_droped" width="200" style="border: 3px dashed #7A97FC;" class=" hidden" />
+            </div>
+        </fieldset>
+
+    </div>
+    <script>
+        $(document).ready(function () {
+            var holder = document.getElementById('holder');
+            holder.ondragover = function () { this.className = 'hover'; return false; };
+            holder.ondrop = function (e) {
+                this.className = 'hidden';
+                e.preventDefault();
+                var file = e.dataTransfer.files[0];
+                var reader = new FileReader();
+                reader.onload = function (event) {
+                    document.getElementById('img_droped').className = 'visible'
+                    $('#img_droped').attr('src', event.target.result);
+                }
+                reader.readAsDataURL(file);
+            };
+        });
+        function attachShadowDom() {
+            const shadowHost = document.getElementById('shadowHost')
+            const shadowRootElement = shadowHost.attachShadow({ mode: 'open' })
+            shadowRootElement.innerHTML = `
+            <h2>I belong to Shadow DOM</h1>
+            <label for="file">Add a file</label>
+                <input type="file" name="file" id="file-upload2"
+                    placeholder="upload a file" onchange="updatespan()"><br /><br />
+                    <span id="fileName2"></span>
+    `
+        }
+        function updatespan() {
+            const shadowHost = document.getElementById('shadowHost')
+            const fileElement = shadowHost.shadowRoot.getElementById('file-upload2')
+            const fileSpan = shadowHost.shadowRoot.getElementById('fileName2')
+            var file = fileElement.files[0].name;
+            fileSpan.innerText = file;
+        }
+
+        $('#file-upload1').change(function () {
+            var file = $('#file-upload1')[0].files[0].name;
+            $('#fileName1').text(file);
+        });
+
+    </script>
+</body>
+
+</html>
