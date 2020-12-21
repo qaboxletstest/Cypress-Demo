@@ -14,17 +14,21 @@ describe('File Upload Suite', () => {
 
     it('File Upload - Drag Drop', () => {
         cy.visit('https://css-tricks.com/examples/DragAndDropFileUploading/')
-        cy.get('#file').attachFile('yey.jpg', { subjectType: 'drag-n-drop' })
+        cy.get('#file').attachFile('yey.jpg')
+        // cy.get('#file').attachFile('yey.jpg', { subjectType: 'drag-n-drop' })
     });
 
+    it.only('Multiple File Upload - Drag Drop', () => {
+        cy.visit('http://127.0.0.1:5500/Help%20Folder/fileupload.html')
+        cy.get('input#file-upload2')
+            .attachFile('dog.jpg')
+            .attachFile('example.json')
+            .attachFile('yey.jpg')
+    });
 
-    it.only('Image File Upload - Drag Drop', () => {
+    it('Image File Upload - Drag Drop', () => {
         cy.visit('http://127.0.0.1:5500/Help%20Folder/fileupload.html')
         // cy.get('div#holder').attachFile('yey.jpg')
         cy.get('div#holder').attachFile('yey.jpg', { subjectType: 'drag-n-drop' })
-    });
-
-    it('Multiple File Upload - Drag Drop', () => {
-        cy.visit('http://127.0.0.1:5500/Help%20Folder/fileuploaddragdrop.html')
     });
 });
