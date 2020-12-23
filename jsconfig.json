@@ -1,6 +1,7 @@
 {
     "include": [
       "./node_modules/cypress",
+      "./Config_Demo/**/*.js",
       "cypress/**/*.js",
       "cypress/**/*d.ts"
     ]

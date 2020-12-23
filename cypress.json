@@ -1,4 +1,4 @@
 {
-    "baseUrl": "https://react-redux.realworld.io/",
-    "chromeWebSecurity": false
+  "baseUrl": "https://react-redux.realworld.io/",
+  "chromeWebSecurity": false
 }

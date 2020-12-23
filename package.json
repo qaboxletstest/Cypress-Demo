@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test-cfg": "cypress open --config pageLoadTimeout=30000,baseUrl=https://www.reddit.com/",
     "test": "cypress open"
   },
   "keywords": [],
