@@ -1,0 +1,5 @@
+{
+  "$schema": "https://on.cypress.io/cypress.schema.json",
+  "baseUrl": "https://docs.cypress.io/guides/guides/test-retries.html#How-It-Works",
+  "integrationFolder": "./Config_Demo"
+}

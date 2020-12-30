@@ -2,13 +2,13 @@ describe("Retries", () => {
   Cypress.config({
     retries: {
       runMode: 2,
-      openMode: 1,
+      openMode: 2,
     },
   });
 
   const retries = {
     runMode: 2,
-    openMode: 4,
+    openMode: 6,
   };
 
   it("Retries - Suite Level", () => {

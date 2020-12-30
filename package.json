@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test-cfg": "cypress open --config pageLoadTimeout=30000,baseUrl=https://www.reddit.com/",
-    "test": "cypress open"
+    "test": "cypress open",
+    "test-custCfg": "cypress open --config-file ./custCypress.json"
   },
   "keywords": [],
   "author": "QA BOX LET'S TEST",
