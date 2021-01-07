@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag N Drop</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+    </style>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js">
+    </script>
+    <style>
+        body {
+            background-color: sienna;
+        }
+
+        fieldset {
+            border: 2px solid darkorange;
+            margin: 10px;
+            padding: 20px;
+            background-color: mistyrose;
+        }
+
+        div#container {
+            border: 5px solid coral;
+            margin: 20px;
+            padding: 20px;
+            background-color: seashell;
+        }
+
+        ul {
+            direction: rtl;
+        }
+
+        h1,
+        h2,
+        legend,
+        a#channel {
+            text-align: center;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            color: maroon;
+            text-decoration: none;
+            font-size: 50px;
+            font-weight: bolder;
+            letter-spacing: 5px;
+        }
+
+        h2,
+        legend {
+            font-size: 40px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            text-align: left;
+            letter-spacing: 1px;
+        }
+
+        a {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 25px;
+            letter-spacing: 1px;
+            color: teal;
+        }
+
+        .fill {
+            background-image: url('http://source.unsplash.com/random/150x150');
+            position: relative;
+            height: 150px;
+            width: 150px;
+            top: 5px;
+            left: 5px;
+            cursor: pointer;
+        }
+
+        .empty {
+            display: inline-block;
+            height: 160px;
+            width: 160px;
+            margin: 10px;
+            border: 3px salmon solid;
+            background-color: cornsilk;
+        }
+
+        .hold {
+            border: solid lightgrey 4px;
+        }
+
+        .hovered {
+            background: lightgrey;
+            border-style: dashed;
+        }
+
+        .invisible {
+            display: none;
+        }
+
+        #drag {
+            width: 125px;
+            height: 125px;
+            float: left;
+            margin: 10px;
+            background-color: maroon;
+            padding: 10px;
+        }
+
+        #drop,
+        #box {
+            width: 250px;
+            height: 250px;
+            float: left;
+            margin: 10px;
+            background-color: peru;
+            padding: 10px;
+        }
+
+        p {
+            color: white;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: large;
+        }
+
+        /* #gate {
+            cursor: pointer;
+            margin-bottom: 100px;
+            width: 83px;
+            height: 46px;
+        } */
+
+        #ball {
+            cursor: pointer;
+            width: 100px;
+            height: 100px;
+            margin: 20px;
+            padding: 10px;
+        }
+
+        #innerContainer {
+            width: 100%;
+            height: 400px;
+            background-color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-radius: 7px;
+            touch-action: none;
+        }
+
+        .item {
+            border-radius: 50%;
+            touch-action: none;
+            user-select: none;
+            position: relative;
+        }
+
+        .one {
+            width: 300px;
+            height: 300px;
+            background-color: rgb(245, 230, 99);
+            border: 10px solid rgba(136, 136, 136, .5);
+            top: 0px;
+            left: 0px;
+        }
+
+        .two {
+            width: 100px;
+            height: 100px;
+            background-color: rgba(196, 241, 190, 1);
+            border: 10px solid rgba(136, 136, 136, .5);
+            top: 30%;
+            left: 10%;
+        }
+
+        .item:active {
+            opacity: .75;
+        }
+
+        .item:hover {
+            cursor: pointer;
+        }
+
+        #dropzone {
+            background-color: wheat;
+            margin: 0.5em;
+            padding: 0.4em;
+            min-height: 40vh;
+            font-size: 2.4em;
+        }
+
+        .node {
+            background-color: tomato;
+            text-align: center;
+            /* max-width: 40vh; */
+            margin: 0.5em;
+            padding: 0.4em;
+            border: 3px solid whitesmoke;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <h1><a id="channel" href="https://www.youtube.com/c/qaboxletstest/playlists">QA BOX LET'S TEST</a></h1>
+        <ul>
+            <li><a href="https://youtu.be/7iZwZ1xhnVw" target="_blank">CSS SELECTORS</a></li>
+            <li><a href="https://www.youtube.com/playlist?list=PLMZdod-kiMhL-b0OqCEt4Ld6faDtOVeGZ"
+                    target="_blank">JQUERY FOR CYPRESS</a></li>
+            <li><a href="https://youtube.com/playlist?list=PLMZdod-kiMhLl5y1G14nzXk-PUEs4mmyx" target="_blank">MOCHA,
+                    CHAI, SINON & CHAI-JQUERY</a></li>
+            <li><a href="https://www.youtube.com/playlist?list=PLMZdod-kiMhJnRl689MsoOzgbBpUGvSzz"
+                    target="_blank">XPATH</a></li>
+            <li><a href="https://youtube.com/playlist?list=PLMZdod-kiMhKBxYSWwp7uqHc7zJZbFnRf" target="_blank">NODEJS
+                    BASICS</a></li>
+            <li><a href="https://youtube.com/playlist?list=PLMZdod-kiMhK7q5R6W-owyNhxHUJ3pf1Y"
+                    target="_blank">JAVASCRIPT</a>
+            </li>
+        </ul>
+        <fieldset>
+            <legend>DRAG AND DROP - Vanilla JavaScript - Drag Events</legend>
+            <div class="empty">
+                <div class="fill" draggable="true"></div>
+            </div>
+            <div class="empty"></div>
+            <div class="empty"></div>
+            <div class="empty"></div>
+
+        </fieldset>
+        <fieldset>
+            <legend>DRAG AND DROP - Vanilla JavaScript - Drag Events - Sortable List</legend>
+            <div id="dropzone">
+                <div id="divOne" class="node" draggable="true">One</div>
+                <div id="divTwo" class="node" draggable="true">Two</div>
+                <div id="divThree" class="node" draggable="true">Three</div>
+                <div id="divFour" class="node" draggable="true">Four</div>
+                <div id="divFive" class="node" draggable="true">Five</div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>DRAG AND DROP - Vanilla JavaScript - Mouse Events </legend>
+            <div id="outerContainer">
+                <div id="innerContainer">
+                    <div id="divOne1" class="item one"></div>
+                    <div id="divTwo2" class="item two"></div>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>DRAG AND DROP - JQuery</legend>
+            <div id="drag">
+                <p>Drag Me</p>
+            </div>
+            <div id="drop">
+                <p>Drop On Me</p>
+            </div>
+        </fieldset>
+    </div>
+    <script>
+        const fill = document.querySelector('.fill')
+        const empties = document.querySelectorAll('.empty')
+
+        // Fill Listeners
+        fill.addEventListener('dragstart', dragStart)
+        fill.addEventListener('dragend', dragEnd)
+
+        // Loop through empties and call drag events
+        for (const empty of empties) {
+            empty.addEventListener('dragover', dragOver)
+            empty.addEventListener('dragenter', dragEnter)
+            empty.addEventListener('dragleave', dragLeave)
+            empty.addEventListener('drop', dragDrop)
+        }
+
+        // Drag Functions
+        function dragStart() {
+            this.className += ' hold'
+            setTimeout(() => this.className = 'invisible', 0)
+            // console.log('start')
+        }
+
+        function dragEnd() {
+            this.className = 'fill'
+            // console.log('end')
+        }
+
+        function dragOver(e) {
+            e.preventDefault()
+            // console.log('over')
+        }
+
+        function dragEnter(e) {
+            e.preventDefault()
+            this.className += ' hovered'
+            // console.log('enter')
+        }
+
+        function dragLeave() {
+            this.className = "empty"
+            // console.log('leave')
+        }
+
+        function dragDrop() {
+            this.className = "empty"
+            this.append(fill)
+            // console.log('drop')
+        }
+
+        // Drag n Drop - Mouse Events
+        var container = document.querySelector("#innerContainer");
+
+        var activeItem = null;
+
+        var active = false;
+
+        container.addEventListener("touchstart", dragStart, false);
+        container.addEventListener("touchend", dragEnd, false);
+        container.addEventListener("touchmove", drag, false);
+
+        container.addEventListener("mousedown", dragStart, false);
+        container.addEventListener("mouseup", dragEnd, false);
+        container.addEventListener("mousemove", drag, false);
+
+        function dragStart(e) {
+
+            if (e.target !== e.currentTarget) {
+                active = true;
+
+                // this is the item we are interacting with
+                activeItem = e.target;
+
+                if (activeItem !== null) {
+                    if (!activeItem.xOffset) {
+                        activeItem.xOffset = 0;
+                    }
+
+                    if (!activeItem.yOffset) {
+                        activeItem.yOffset = 0;
+                    }
+
+                    if (e.type === "touchstart") {
+                        activeItem.initialX = e.touches[0].clientX - activeItem.xOffset;
+                        activeItem.initialY = e.touches[0].clientY - activeItem.yOffset;
+                    } else {
+                        activeItem.initialX = e.clientX - activeItem.xOffset;
+                        activeItem.initialY = e.clientY - activeItem.yOffset;
+                    }
+                }
+            }
+        }
+
+        function dragEnd(e) {
+            if (activeItem !== null) {
+                activeItem.initialX = activeItem.currentX;
+                activeItem.initialY = activeItem.currentY;
+            }
+            active = false;
+            activeItem = null;
+            var divOne = document.getElementById('divOne1')
+            let divOneX1 = divOne.getBoundingClientRect().left
+            let divOneWidth = divOne.getBoundingClientRect().width
+            let divOneX2 = divOneX1 + divOneWidth
+            let divOneY1 = divOne.getBoundingClientRect().top
+            let divOneHeight = divOne.getBoundingClientRect().height
+            let divOneY2 = divOneX1 + divOneHeight
+            if (e.clientX > divOneX1 && e.clientX < divOneX2) {
+                if (e.clientY > divOneY1 && e.clientY < divOneY2) {
+                    window.alert('Smaller circle is dropped inside bigger circle')
+                }
+            }
+        }
+
+        function drag(e) {
+            if (active) {
+                if (e.type === "touchmove") {
+                    e.preventDefault();
+
+                    activeItem.currentX = e.touches[0].clientX - activeItem.initialX;
+                    activeItem.currentY = e.touches[0].clientY - activeItem.initialY;
+                } else {
+                    activeItem.currentX = e.clientX - activeItem.initialX;
+                    activeItem.currentY = e.clientY - activeItem.initialY;
+                }
+
+                activeItem.xOffset = activeItem.currentX;
+                activeItem.yOffset = activeItem.currentY;
+
+                setTranslate(activeItem.currentX, activeItem.currentY, activeItem);
+            }
+        }
+
+        function setTranslate(xPos, yPos, el) {
+            el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+        }
+
+        // Jquery Example
+        $(function () {
+            $("#drag").draggable();
+            $("#drop").droppable(
+                {
+                    drop: function () {
+                        alert("I am dropped");
+                    }
+                });
+        });
+
+        // Sortable List - Drag n Drop - Native HTML5 Drag Events
+        let dropzone = document.querySelector('#dropzone')
+        let nodes = document.querySelectorAll('.node')
+        let selectedNode = ''
+        let selectedNodePos = 0
+        nodes.forEach(node => {
+            node.addEventListener("mousedown", (e) => {
+                for (let index = 0; index < nodes.length; index++) {
+                    document.getElementById(nodes[index]['id']).style.backgroundColor = 'tomato'
+                }
+                document.getElementById(e.target.id).style.backgroundColor = 'yellow'
+                document.getElementById(e.target.id).style.transition = '0s'
+            })
+            node.addEventListener("dragstart", (e) => {
+                e.dataTransfer.setData('text', e.target.id)
+                selectedNode = document.getElementById(e.target.id)
+                setTimeout(() => {
+                    dropzone.removeChild(selectedNode)
+                }, 0)
+            })
+        })
+        dropzone.addEventListener("dragover", (e) => {
+            e.preventDefault()
+            whereAmI(e.clientY)
+        })
+        dropzone.addEventListener("drop", (e) => {
+            e.preventDefault()
+            dropzone.insertBefore(selectedNode, dropzone.children[selectedNodePos])
+            resetNodes()
+            setTimeout(() => {
+                selectedNode.style.backgroundColor = 'tomato'
+                selectedNode.style.transition = '2s'
+            })
+        })
+        function resetNodes() {
+            for (let index = 0; index < nodes.length; index++) {
+                document.getElementById(nodes[index]['id']).style.marginTop = '0.5em'
+            }
+        }
+        function establishNodePositions() {
+            nodes = document.querySelectorAll('.node')
+            for (let index = 0; index < nodes.length; index++) {
+                let element = document.getElementById(nodes[index]['id'])
+                let pos = element.getBoundingClientRect()
+                let yTop = pos.top
+                let yBottom = pos.bottom
+                nodes[index]['yPos'] = yTop + ((yBottom - yTop) / 2)
+            }
+        }
+        function whereAmI(currentYPos) {
+            establishNodePositions()
+            for (let index = 0; index < nodes.length; index++) {
+                if (nodes[index]['yPos'] < currentYPos) {
+                    var nodeAbove = document.getElementById(nodes[index]['id'])
+                    selectedNodePos = index + 1
+                } else {
+                    if (!nodeBelow) {
+                        var nodeBelow = document.getElementById(nodes[index]['id'])
+                    }
+                }
+            }
+            if (typeof nodeAbove == 'undefined') {
+                selectedNodePos = 0
+            }
+            resetNodes()
+            if (typeof nodeBelow == 'object') {
+                nodeBelow.style.marginTop = '3em'
+                nodeBelow.style.transition = '1.8s'
+            }
+        }
+
+    </script>
+</body>
+
+</html>

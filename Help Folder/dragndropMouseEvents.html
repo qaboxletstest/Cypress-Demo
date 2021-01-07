@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Drag n Drop - Mouse Events</title>
+    <style>
+        #container {
+            width: 100%;
+            height: 400px;
+            background-color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-radius: 7px;
+            touch-action: none;
+        }
+
+        .item {
+            border-radius: 50%;
+            touch-action: none;
+            user-select: none;
+            position: relative;
+        }
+
+        .one {
+            width: 300px;
+            height: 300px;
+            background-color: rgb(245, 230, 99);
+            border: 10px solid rgba(136, 136, 136, .5);
+            top: 0px;
+            left: 0px;
+        }
+
+        .two {
+            width: 100px;
+            height: 100px;
+            background-color: rgba(196, 241, 190, 1);
+            border: 10px solid rgba(136, 136, 136, .5);
+            top: 30%;
+            left: 10%;
+        }
+
+        .item:active {
+            opacity: .75;
+        }
+
+        .item:hover {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="outerContainer">
+        <div id="container">
+            <div id="divOne" class="item one"></div>
+            <div id="divTwo" class="item two"></div>
+        </div>
+    </div>
+
+    <script>
+        var container = document.querySelector("#container");
+        var activeItem = null;
+
+        var active = false;
+
+        container.addEventListener("touchstart", dragStart, false);
+        container.addEventListener("touchend", dragEnd, false);
+        container.addEventListener("touchmove", drag, false);
+
+        container.addEventListener("mousedown", dragStart, false);
+        container.addEventListener("mouseup", dragEnd, false);
+        container.addEventListener("mousemove", drag, false);
+
+        function dragStart(e) {
+
+            if (e.target !== e.currentTarget) {
+                active = true;
+
+                // this is the item we are interacting with
+                activeItem = e.target;
+
+                if (activeItem !== null) {
+                    if (!activeItem.xOffset) {
+                        activeItem.xOffset = 0;
+                    }
+
+                    if (!activeItem.yOffset) {
+                        activeItem.yOffset = 0;
+                    }
+
+                    if (e.type === "touchstart") {
+                        activeItem.initialX = e.touches[0].clientX - activeItem.xOffset;
+                        activeItem.initialY = e.touches[0].clientY - activeItem.yOffset;
+                    } else {
+                        console.log("doing something!");
+                        activeItem.initialX = e.clientX - activeItem.xOffset;
+                        activeItem.initialY = e.clientY - activeItem.yOffset;
+                    }
+                }
+            }
+        }
+
+        function dragEnd(e) {
+            if (activeItem !== null) {
+                activeItem.initialX = activeItem.currentX;
+                activeItem.initialY = activeItem.currentY;
+            }
+            active = false;
+            activeItem = null;
+            var divOne = document.getElementById('divOne')
+            let divOneX1 = divOne.getBoundingClientRect().left
+            let divOneWidth = divOne.getBoundingClientRect().width
+            let divOneX2 = divOneX1 + divOneWidth
+            let divOneY1 = divOne.getBoundingClientRect().top
+            let divOneHeight = divOne.getBoundingClientRect().height
+            let divOneY2 = divOneX1 + divOneHeight
+            if (e.clientX > divOneX1 && e.clientX < divOneX2) {
+                if (e.clientY > divOneY1 && e.clientY < divOneY2) {
+                    window.alert('Smaller circle is dropped inside bigger circle')
+                }
+            }
+        }
+
+        function drag(e) {
+            if (active) {
+                if (e.type === "touchmove") {
+                    e.preventDefault();
+
+                    activeItem.currentX = e.touches[0].clientX - activeItem.initialX;
+                    activeItem.currentY = e.touches[0].clientY - activeItem.initialY;
+                } else {
+                    activeItem.currentX = e.clientX - activeItem.initialX;
+                    activeItem.currentY = e.clientY - activeItem.initialY;
+                }
+
+                activeItem.xOffset = activeItem.currentX;
+                activeItem.yOffset = activeItem.currentY;
+
+                setTranslate(activeItem.currentX, activeItem.currentY, activeItem);
+            }
+        }
+
+        function setTranslate(xPos, yPos, el) {
+            el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+        }
+    </script>
+</body>
+
+</html>
