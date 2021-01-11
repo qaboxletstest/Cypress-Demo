@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse Events</title>
+    <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="src/css/contextMenu.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="src/js/contextMenu.js"></script>
+    <style>
+        body {
+            background-color: sienna;
+        }
+
+        fieldset {
+            border: 2px solid darkorange;
+            margin: 10px;
+            padding: 20px;
+            background-color: white;
+        }
+
+        div#container {
+            border: 5px solid coral;
+            margin: 20px;
+            padding: 20px;
+            background-color: seashell;
+        }
+
+        ul {
+            direction: rtl;
+        }
+
+        h1,
+        h2,
+        legend,
+        a#channel {
+            text-align: center;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            color: maroon;
+            text-decoration: none;
+            font-size: 50px;
+            font-weight: bolder;
+            letter-spacing: 5px;
+        }
+
+        h2,
+        legend {
+            font-size: 40px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            text-align: left;
+            letter-spacing: 1px;
+        }
+
+        a {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 25px;
+            letter-spacing: 1px;
+            color: teal;
+        }
+
+        button {
+            border-radius: 5px;
+            background-color: yellowgreen;
+            color: white;
+            font-size: 20px;
+        }
+
+        .mydiv {
+            width: 100px;
+            height: 100px;
+            background-color: rgba(196, 241, 190, 1);
+            border: 10px solid rgba(136, 136, 136, .5);
+            border-radius: 5em;
+            top: 30%;
+            left: 10%;
+        }
+
+        .box {
+            width: 200px;
+            height: 200px;
+            margin: 50px auto;
+            text-align: center;
+            line-height: 200px;
+        }
+
+        #box2 {
+            background-color: yellowgreen;
+            color: #fff;
+            color: white;
+            font-size: 30px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <h1><a id="channel" href="https://www.youtube.com/c/qaboxletstest/playlists">QA BOX LET'S TEST</a></h1>
+        <ul>
+            <li><a href="https://youtu.be/7iZwZ1xhnVw" target="_blank">CSS SELECTORS</a></li>
+            <li><a href="https://www.youtube.com/playlist?list=PLMZdod-kiMhL-b0OqCEt4Ld6faDtOVeGZ"
+                    target="_blank">JQUERY FOR CYPRESS</a></li>
+            <li><a href="https://youtube.com/playlist?list=PLMZdod-kiMhLl5y1G14nzXk-PUEs4mmyx" target="_blank">MOCHA,
+                    CHAI, SINON & CHAI-JQUERY</a></li>
+            <li><a href="https://www.youtube.com/playlist?list=PLMZdod-kiMhJnRl689MsoOzgbBpUGvSzz"
+                    target="_blank">XPATH</a></li>
+            <li><a href="https://youtube.com/playlist?list=PLMZdod-kiMhKBxYSWwp7uqHc7zJZbFnRf" target="_blank">NODEJS
+                    BASICS</a></li>
+            <li><a href="https://youtube.com/playlist?list=PLMZdod-kiMhK7q5R6W-owyNhxHUJ3pf1Y"
+                    target="_blank">JAVASCRIPT</a>
+            </li>
+        </ul>
+        <fieldset>
+            <legend>Mouse Events</legend>
+            <button id='click'>CLICK ME</button>
+            <button id='dblclick'>DOUBLE CLICK ME</button>
+            <button id='rightclick'>RIGHT CLICK ME</button>
+            <button id='msover'>HOVER OVER ME</button>
+            <br />
+            <br />
+            <div id="show" class="mydiv" hidden>
+
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>jQuery Context Menu</legend>
+            <div class="box" id="box2">Right Click</div>
+        </fieldset>
+    </div>
+    <script>
+        $(document).ready(() => {
+            $('#click').on('click', (e) => {
+                alert(`${e.type} event is fired`)
+            })
+            $('#dblclick').on('dblclick', (e) => {
+                alert(`${e.type} event is fired`)
+            })
+            $('#rightclick').on('contextmenu', (e) => {
+                alert(`${e.type} event is fired`)
+                e.preventDefault()
+            })
+            $('#msover').on('mouseover', (e) => {
+                $('#show').show()
+            })
+            $('#msover').on('mouseout', (e) => {
+                // alert(`${e.type} event is fired`)
+                $('#show').hide()
+            })
+            $('#show').on('click', (e) => {
+                alert(`${e.target.id} is ${e.type}ed`)
+            })
+        })
+        // Right click menu
+
+        var data2 = [
+            [
+                {
+                    text: "One Apple"
+                },
+                {
+                    text: "Two Oranges"
+                },
+                {
+                    text: "Three Bananas"
+                }
+            ]
+        ];
+
+        $("#box2").contextMenu(data2, {
+            name: "Context Menu",
+            offsetX: 5,
+            offsetY: 5,
+        });
+    </script>
+</body>
+
+</html>
