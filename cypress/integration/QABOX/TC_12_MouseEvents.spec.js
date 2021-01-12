@@ -4,8 +4,8 @@ describe("Mouse Events & Focus", () => {
     cy.on("window:alert", (txt) => {
       expect(txt).to.eql("click event is fired");
     });
-    cy.get("#click").click();
-    // cy.get("#click").trigger("click");
+    // cy.get("#click").click();
+    cy.get("#click").trigger("click");
   });
 
   it.skip("Double Click", () => {
@@ -13,8 +13,8 @@ describe("Mouse Events & Focus", () => {
     cy.on("window:alert", (txt) => {
       expect(txt).to.eql("dblclick event is fired");
     });
-    // cy.get('#dblclick').dblclick()
-    // cy.get('#dblclick').trigger('dblclick')
+    cy.get("#dblclick").dblclick();
+    // cy.get("#dblclick").trigger("dblclick");
   });
 
   it.skip("Right Click", () => {
@@ -22,8 +22,8 @@ describe("Mouse Events & Focus", () => {
     cy.on("window:alert", (txt) => {
       expect(txt).to.eql("contextmenu event is fired");
     });
-    // cy.get('#rightclick').rightclick()
-    // cy.get('#rightclick').trigger('contextmenu')
+    // cy.get("#rightclick").rightclick();
+    cy.get("#rightclick").trigger("contextmenu");
   });
 
   it.skip("Right Click Menu - jqueryUI Plugin - Options coming from Data", () => {
@@ -41,14 +41,20 @@ describe("Mouse Events & Focus", () => {
     cy.on("window:alert", (txt) => {
       expect(txt).to.eql("show is clicked");
     });
-    // cy.get('#msover').trigger('mouseover')
-    // cy.get('#show').should('be.visible')
-    // cy.get('#msover').trigger('mouseout')
-    // cy.get('#show').should('not.be.visible')
+    // cy.get("#msover").trigger("mouseover");
+    // cy.get("#show").should("be.visible");
+    // cy.get("#msover").trigger("mouseout");
+    // cy.get("#show").should("not.be.visible");
 
-    // cy.get('#show').click()
-    // cy.get('#show').click({ force: true })
-    // cy.get('#show').invoke('show').click()
+    // cy.get("#show").click();
+    // cy.get("#show").click({ force: true });
+    cy.get("#show").invoke("show").click();
+  });
+
+  it.skip("Flipkart - mousemove Event", () => {
+    cy.visit("https://www.flipkart.com/");
+    cy.get("a:contains('Login')").trigger("mouseover");
+    cy.get('a:contains("Rewards")').click();
   });
 
   it.skip("Spice Jet - mousemove Event", () => {
@@ -58,24 +64,15 @@ describe("Mouse Events & Focus", () => {
     cy.get('li>a:contains("Sign up")').click();
   });
 
-  it.skip("Trends kitchens - Mousemove Event and Allow the state to change", () => {
-    cy.visit("https://trendskitchens.co.nz/");
-    // cy.get(".main-menu.cl-effect-11 > span:nth-of-type(1)").trigger(
-    //   "mousemove"
-    // );
-    // cy.get("span.has-dropdown:nth-of-type(1)").should("be.visible");
-    cy.contains("Our Process").click();
-    cy.url().should("include", "our-process");
-  });
-
-  it.skip("Automation Practice - Event to be triggered is Focus", () => {
+  it.only("Automation Practice - Event to be triggered is Focus", () => {
     cy.visit("http://automationpractice.com/index.php");
     cy.get(".sf-menu.clearfix.menu-content > li:nth-of-type(1)").trigger(
       "mousemove"
     );
     // cy.get(".submenu-container.clearfix.first-in-line-xs").invoke("show");
-    // cy.get('.sf-menu.clearfix.menu-content > li:nth-of-type(1)')
-    //     .trigger('focus').should('have.class', 'sfHover')
-    cy.get('a[title="Tops"]').click({ force: true });
+    cy.get(".sf-menu.clearfix.menu-content > li:nth-of-type(1)")
+      .trigger("focus")
+      .should("have.class", "sfHover");
+    cy.get('a[title="Tops"]').click();
   });
 });
