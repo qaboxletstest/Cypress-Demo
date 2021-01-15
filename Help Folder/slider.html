@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Slider</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <style>
+        body {
+            background-color: sienna;
+        }
+
+        fieldset {
+            border: 2px solid darkorange;
+            margin: 10px;
+            padding: 20px;
+            background-color: white;
+        }
+
+        div#container {
+            border: 5px solid coral;
+            margin: 20px;
+            padding: 20px;
+            background-color: seashell;
+        }
+
+        ul {
+            direction: rtl;
+        }
+
+        h1,
+        h2,
+        legend,
+        a#channel {
+            text-align: center;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            color: maroon;
+            text-decoration: none;
+            font-size: 50px;
+            font-weight: bolder;
+            letter-spacing: 5px;
+        }
+
+        h2,
+        legend {
+            font-size: 40px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            text-align: left;
+            letter-spacing: 1px;
+        }
+
+        a {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 25px;
+            letter-spacing: 1px;
+            color: teal;
+        }
+
+        .slidecontainer {
+            width: 100%;
+        }
+
+        .slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 25px;
+            background: #d3d3d3;
+            outline: none;
+            opacity: 0.7;
+            -webkit-transition: .2s;
+            transition: opacity .2s;
+        }
+
+        .slider:hover {
+            opacity: 1;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 25px;
+            height: 25px;
+            background: #4CAF50;
+            cursor: pointer;
+        }
+
+        .slider::-moz-range-thumb {
+            width: 25px;
+            height: 25px;
+            background: #4CAF50;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <h1><a id="channel" href="https://www.youtube.com/c/qaboxletstest/playlists">QA BOX LET'S TEST</a></h1>
+        <ul>
+            <li><a href="https://youtu.be/7iZwZ1xhnVw" target="_blank">CSS SELECTORS</a></li>
+            <li><a href="https://www.youtube.com/playlist?list=PLMZdod-kiMhL-b0OqCEt4Ld6faDtOVeGZ"
+                    target="_blank">JQUERY FOR CYPRESS</a></li>
+            <li><a href="https://youtube.com/playlist?list=PLMZdod-kiMhLl5y1G14nzXk-PUEs4mmyx" target="_blank">MOCHA,
+                    CHAI, SINON & CHAI-JQUERY</a></li>
+            <li><a href="https://www.youtube.com/playlist?list=PLMZdod-kiMhJnRl689MsoOzgbBpUGvSzz"
+                    target="_blank">XPATH</a></li>
+            <li><a href="https://youtube.com/playlist?list=PLMZdod-kiMhKBxYSWwp7uqHc7zJZbFnRf" target="_blank">NODEJS
+                    BASICS</a></li>
+            <li><a href="https://youtube.com/playlist?list=PLMZdod-kiMhK7q5R6W-owyNhxHUJ3pf1Y"
+                    target="_blank">JAVASCRIPT</a>
+            </li>
+        </ul>
+        <fieldset>
+            <legend>Default Range Slider</legend>
+            <p>Drag the slider to display the current value.</p>
+            <input type="range" name="rangeone" id="rangeone" min="0" max="100" step="10" value="20">
+            <p id="one"></p>
+        </fieldset>
+        <fieldset>
+            <legend>Custom Range Slider</legend>
+            <div class="slidecontainer">
+                <p>Drag the slider to display the current value.</p>
+                <input type="range" name="rangetwo" id="rangetwo" min="0" max="100" value="20" step="10" class="slider">
+                <p id="two"></p>
+            </div>
+        </fieldset>
+
+    </div>
+    <script>
+        $(document).ready(() => {
+            let rangeoneVal = $('#rangeone').val()
+            $('p#one').text(rangeoneVal)
+            $('#rangeone').on('change', () => {
+                $('p#one').text($('#rangeone').val())
+            })
+            let rangetwoVal = $('#rangetwo').val()
+            $('p#two').text(rangetwoVal)
+            $('#rangetwo').on('change', () => {
+                $('p#two').text($('#rangetwo').val())
+            })
+        })
+    </script>
+</body>
+
+</html>

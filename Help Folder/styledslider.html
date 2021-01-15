@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slider Created Using CSS</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .slider {
+            width: 300px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .slides {
+            display: flex;
+
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+
+
+
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .slides::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+
+        .slides::-webkit-scrollbar-thumb {
+            background: yellowgreen;
+            border-radius: 10px;
+        }
+
+        .slides::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .slides>div {
+            scroll-snap-align: start;
+            flex-shrink: 0;
+            width: 300px;
+            height: 300px;
+            margin-right: 50px;
+            border-radius: 10px;
+            background: whitesmoke;
+            transform-origin: center center;
+            transform: scale(1);
+            transition: transform 0.5s;
+            position: relative;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 100px;
+        }
+
+
+        .slider>a {
+            display: inline-flex;
+            width: 1.5rem;
+            height: 1.5rem;
+            background: white;
+            text-decoration: none;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin: 0 0 0.5rem 0;
+            position: relative;
+        }
+
+        .slider>a:active {
+            top: 1px;
+        }
+
+        .slider>a:focus {
+            background: #000;
+        }
+
+        /* Don't need button navigation */
+        @supports (scroll-snap-type) {
+            .slider>a {
+                display: none;
+            }
+        }
+
+        html,
+        body {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Ropa Sans', sans-serif;
+            color: red;
+            background-color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slider">
+        <a href="#slide-1">1</a>
+        <a href="#slide-2">2</a>
+        <a href="#slide-3">3</a>
+        <a href="#slide-4">4</a>
+        <a href="#slide-5">5</a>
+
+        <div class="slides">
+            <div id="slide-1">
+                1
+            </div>
+            <div id="slide-2">
+                2
+            </div>
+            <div id="slide-3">
+                3
+            </div>
+            <div id="slide-4">
+                4
+            </div>
+            <div id="slide-5">
+                5
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
