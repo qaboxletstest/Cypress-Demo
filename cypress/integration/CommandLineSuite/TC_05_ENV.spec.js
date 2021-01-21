@@ -1,4 +1,4 @@
-describe.only("Login Suite - ENV OR JSON File", function () {
+describe("Login Suite - ENV OR JSON File", function () {
   it("Login Test", function () {
     //Arrange
     cy.visit("https://react-redux.realworld.io/#/login?_k=g43dop");

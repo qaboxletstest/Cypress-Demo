@@ -1,5 +1,6 @@
 {
   "baseUrl": "https://react-redux.realworld.io/",
   "chromeWebSecurity": false,
-  "integrationFolder": "cypress/integration/CommandLineSuite"
+  "video": false,
+  "screenshotOnRunFailure": false
 }
