@@ -1,4 +1,5 @@
 {
   "baseUrl": "https://react-redux.realworld.io/",
-  "chromeWebSecurity": false
+  "chromeWebSecurity": false,
+  "integrationFolder": "cypress/integration/CommandLineSuite"
 }
