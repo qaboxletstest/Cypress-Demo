@@ -19,11 +19,21 @@ import "./commands";
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
 
+// Enable support for XPath
+import "cypress-xpath";
+
+// Add Screenshot to Mochawesome Report
+import addContext from "mochawesome/addContext";
+
 Cypress.on("uncaught:exception", (err, runnable) => {
   // returning false here prevents Cypress from
   // failing the test
   return false;
 });
 
-// Enable support for XPath
-import "cypress-xpath";
+Cypress.on("test:after:run", (test, runnable) => {
+  if (test.state === "failed") {
+    const screenshot = `assets/${Cypress.spec.name}/${runnable.parent.title} -- ${test.title} (failed).png`;
+    addContext({ test }, screenshot);
+  }
+});
