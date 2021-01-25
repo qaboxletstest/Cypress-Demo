@@ -21,9 +21,9 @@ import '@shelex/cypress-allure-plugin';
 STEP 3 Add Terminal Commands inside scripts object available into package.json file
 
 "scripts": {
-    "cy:run": "cypress run --env allure=true --browser chrome --headless",
+    "cy:run": "cypress run --env allure=true",
     "allure:report": "allure generate allure-results --clean -o allure-report",
-    "allure:clear": "if exist allure-results rmdir /q /s allure-results && if exist allure-report rmdir /q /s  allure-report && if exist cypress\\screenshots rmdir /q /s cypress\\screenshots",
+    "allure:clear": "if exist allure-results rmdir /q /s allure-results && if exist allure-report rmdir /q /s allure-report && if exist cypress\\screenshots rmdir /q /s cypress\\screenshots && if exist cypress\\videos rmdir /q /s cypress\\videos",
     "pretest": "npm run allure:clear",
     "test": "npm run cy:run || npm run posttest",
     "posttest": "npm run allure:report"
