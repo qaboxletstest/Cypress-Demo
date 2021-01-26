@@ -12,7 +12,7 @@
     "test-script-firefox": "cypress run --env email=qaboxletstest@gmail.com,password=password123 --browser firefox --spec 'cypress/integration/CommandLineSuite/*ENV*.js'",
     "test-c-f": "npm run test-script-chrome && npm run test-script-firefox",
     "test-script-chrome-headless": "cypress run --headless --env email=qaboxletstest@gmail.com,password=password123 --browser chrome --spec 'cypress/integration/CommandLineSuite/*ENV*.js'",
-    "clean:reports": "if exist cypress\\reports rmdir /s/q cypress\\reports && mkdir cypress\\reports mkdir cypress\\reports\\mochareports",
+    "clean:reports": "if exist cypress\\reports rmdir /s/q cypress\\reports && mkdir cypress\\reports && mkdir cypress\\reports\\mochareports",
     "pretest": "npm run clean:reports",
     "scripts": "cypress run",
     "combine-reports": "mochawesome-merge cypress/reports/mocha/*.json > cypress/reports/mochareports/report.json",
@@ -24,7 +24,9 @@
   "author": "QA BOX LET'S TEST",
   "license": "ISC",
   "dependencies": {
+    "axe-core": "^4.1.1",
     "cypress": "^5.4.0",
+    "cypress-axe": "^0.12.0",
     "cypress-file-upload": "^4.1.1",
     "cypress-multi-reporters": "^1.4.0",
     "cypress-xpath": "^1.6.1",

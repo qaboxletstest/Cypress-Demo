@@ -56,10 +56,12 @@
 
         button,
         input[type=submit] {
-            background-color: tan;
+            /* lavenderblush */
+            background-color: lavenderblush;
             border-radius: 5px;
             border-width: 2px;
-            color: white;
+            /* white */
+            color: black;
             margin-right: 10px;
             font-size: large;
         }
@@ -67,13 +69,24 @@
 </head>
 
 <body>
-    <div id="container">
+    <!-- role="main" -->
+    <div id="container" role="main">
         <h1><a id="channel" href="https://www.youtube.com/c/qaboxletstest/playlists">QA BOX LET'S TEST</a></h1>
         <ul>
-            <li><a href="https://youtu.be/7iZwZ1xhnVw" target="_blank">CSS Selectors</a></li>
+            <li><a href="https://youtu.be/7iZwZ1xhnVw" target="_blank">CSS SELECTORS</a></li>
             <li><a href="https://www.youtube.com/playlist?list=PLMZdod-kiMhL-b0OqCEt4Ld6faDtOVeGZ"
-                    target="_blank">JQUERY - Selectors, Filters & DOM Traversing Methods</a></li>
-            <li><a href="https://youtu.be/LWLq5EmIiSs" target="_blank">DOM Assertions - Chai-jQuery</a></li>
+                    target="_blank">JQUERY FOR
+                    CYPRESS</a></li>
+            <li><a href="https://youtube.com/playlist?list=PLMZdod-kiMhLl5y1G14nzXk-PUEs4mmyx" target="_blank">MOCHA,
+                    CHAI, SINON & CHAI-JQUERY</a></li>
+            <li><a href="https://www.youtube.com/playlist?list=PLMZdod-kiMhJnRl689MsoOzgbBpUGvSzz"
+                    target="_blank">XPATH</a>
+            </li>
+            <li><a href="https://youtube.com/playlist?list=PLMZdod-kiMhKBxYSWwp7uqHc7zJZbFnRf" target="_blank">NODEJS
+                    BASICS</a></li>
+            <li><a href="https://youtube.com/playlist?list=PLMZdod-kiMhK7q5R6W-owyNhxHUJ3pf1Y"
+                    target="_blank">JAVASCRIPT</a>
+            </li>
         </ul>
         <fieldset id="GETCOMMAND">
             <legend>CYPRESS GET COMMAND</legend>
@@ -104,11 +117,16 @@
                 </fieldset>
                 <fieldset>
                     <legend>What is Your Favorite Pet?</legend>
-                    <input type="checkbox" name="favorite_pet" value="Cats">Cats<br>
-                    <input type="checkbox" name="favorite_pet" value="Dogs">Dogs<br>
-                    <input type="checkbox" name="favorite_pet" value="Birds">Birds<br>
-                    <input type="checkbox" name="favorite_pet" value="Rabbits">Rabbits<br>
-                    <input type="checkbox" name="favorite_pet" value="Horses">Horses<br>
+                    <!-- c"
+                    aria-label="Dogs"
+                    aria-label="Birds"
+                    aria-label="Rabbits"
+                    aria-label="Horses" -->
+                    <input aria-label="Dogs" type="checkbox" name="favorite_pet" value="Cats">Cats<br>
+                    <input  aria-label="Dogs" type="checkbox" name="favorite_pet" value="Dogs">Dogs<br>
+                    <input  aria-label="Birds" type="checkbox" name="favorite_pet" value="Birds">Birds<br>
+                    <input  aria-label="Rabbits" type="checkbox" name="favorite_pet" value="Rabbits">Rabbits<br>
+                    <input  aria-label="Horses" type="checkbox" name="favorite_pet" value="Horses">Horses<br>
                 </fieldset>
             </fieldset>
         </fieldset>
@@ -143,7 +161,8 @@
             <fieldset>
                 <legend>FIND input[type='submit'] ELEMENT ON BASIS OF VALUE</legend>
                 <form onsubmit="return false;">
-                    <input type="submit" value="Submit the form" onclick="submitForm()" />
+                    <label for="submit">Submit the form</label>
+                    <input name="submit" type="submit" value="Submit the form" onclick="submitForm()" />
                 </form>
             </fieldset>
             <fieldset>

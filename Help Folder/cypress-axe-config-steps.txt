@@ -1,0 +1,14 @@
+Step 1 Install Dependencies 
+ npm install cypress-axe axe-core
+
+Step 2 Include the commands. Update cypress/support/index.js file to include the cypress-axe commands by adding:
+import 'cypress-axe'
+
+Step 3 cy.injectAxe() - This will inject the axe-core runtime into the page under test. You must run this after a call to cy.visit() and before you run the checkA11y command.
+
+Step 4 cy.checkA11y() - This will run axe against the document at the point in which it is called. This means you can call this after interacting with your page and uncover accessibility issues introduced as a result of rendering in response to user actions.
+
+cy.checkA11y(arg1, arg2, agr3)
+arg1 - Selector (Default is Document, Select a specific Selector, Exclude a specific Selector)
+arg2 - Change the default rules
+agr3 - Callback to work with violations
