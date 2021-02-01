@@ -1,5 +1,6 @@
 import "cypress-file-upload";
 import "@4tw/cypress-drag-drop";
+import "@percy/cypress";
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite

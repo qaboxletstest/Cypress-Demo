@@ -1,0 +1,7 @@
+{
+  "$schema": "https://on.cypress.io/cypress.schema.json",
+  "integrationFolder": "cypress/integration/VisualTesting/Percy",
+  "baseUrl": "http://127.0.0.1:5500/Help%20Folder",
+  "video": false,
+  "screenshotOnRunFailure": false
+}

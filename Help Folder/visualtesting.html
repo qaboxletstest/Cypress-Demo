@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Page</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: #171b1f;
+        }
+
+        fieldset {
+            height: 40%;
+            border: 2px solid white;
+            margin-top: 40px;
+            margin-left: 100px;
+            margin-right: 100px;
+            background-color: white;
+            border-radius: 55px;
+        }
+
+        canvas {
+            margin-left: 20%;
+            margin-right: 20%;
+            padding-top: 4%;
+            padding-left: 15%;
+            padding-right: 15%;
+        }
+
+        legend {
+            color: rgb(206, 70, 29);
+            letter-spacing: 3.5px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            text-align: center;
+            font-size: 50px;
+            text-shadow: black;
+        }
+
+        .btnClass {
+            background-color: rgb(100, 20, 40);
+            border-radius: 5px;
+            border-width: 2px;
+            color: white;
+            font-size: large;
+            padding: 55px;
+            margin-bottom: 3px;
+            margin-right: 1px;
+        }
+
+        #btns {
+            margin-left: 38%;
+            margin-right: 35%;
+            font-size: xx-large;
+        }
+    </style>
+</head>
+
+<body>
+    <fieldset id="fieldsetOne">
+        <legend>Visual Area</legend>
+        <canvas></canvas>
+    </fieldset>
+    <fieldset id="fieldsetTwo">
+        <legend>Actionable Elements</legend>
+        <div id='btns'>
+            <button id="red" class="btnClass">Red</button>
+            <button id="green" class="btnClass">Green</button>
+            <button id="blue" class="btnClass">Blue</button>
+            <button id="reset" class="btnClass">Reset</button>
+        </div>
+    </fieldset>
+    <script src="./src1/js/canvas.js"></script>
+</body>
+
+</html>

@@ -19,18 +19,22 @@
     "generate-report": "marge cypress/reports/mochareports/report.json -f report -o cypress/reports/mochareports",
     "posttest": "npm run combine-reports && npm run generate-report",
     "test": "npm run scripts || npm run posttest",
-    "cy:api": "cypress open --config-file ./custAPIConfig.json"
+    "cy:api": "cypress open --config-file ./custAPIConfig.json",
+    "cy:snapshot": "cypress open --config-file ./custVisualSnapshotConfig.json",
+    "cy:percy": "npx percy exec -- cypress run --config-file ./custVisualPercyConfig.json"
   },
   "keywords": [],
   "author": "QA BOX LET'S TEST",
   "license": "ISC",
   "dependencies": {
     "@bahmutov/cy-api": "^1.4.3",
+    "@percy/cypress": "^2.3.4",
     "axe-core": "^4.1.1",
     "cypress": "^5.4.0",
     "cypress-axe": "^0.12.0",
     "cypress-file-upload": "^4.1.1",
     "cypress-multi-reporters": "^1.4.0",
+    "cypress-plugin-snapshots": "^1.4.4",
     "cypress-xpath": "^1.6.1",
     "mocha": "^8.2.1",
     "mochawesome": "^6.2.1",
