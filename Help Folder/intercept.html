@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INTERCEPT XHR & FETCH</title>
+    <style>
+        body {
+            background-color: sienna;
+        }
+
+        div,
+        fieldset {
+            border: 2px solid darkorange;
+            margin: 10px;
+            padding: 20px;
+            background-color: thistle;
+        }
+
+        div.btnsOne {
+            border: none;
+            margin-left: 100px;
+            padding: 0px;
+            background-color: thistle;
+        }
+
+        div#container {
+            border: 5px solid coral;
+            margin: 20px;
+            padding: 20px;
+            background-color: seashell;
+        }
+
+        ul {
+            direction: rtl;
+        }
+
+        h1,
+        a#channel {
+            text-align: center;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            color: maroon;
+            text-decoration: none;
+            font-size: xx-large;
+            font-weight: bolder;
+            letter-spacing: 5px;
+        }
+
+        span,
+        label,
+        a {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: large;
+            letter-spacing: 1px;
+        }
+
+        legend {
+            color: maroon;
+            letter-spacing: 2.5px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-weight: bolder;
+        }
+
+        button,
+        input[type=submit] {
+            background-color: tan;
+            border-radius: 5px;
+            border-width: 2px;
+            color: black;
+            margin-right: 10px;
+            font-size: large;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid coral;
+            background-color: thistle;
+        }
+
+        th,
+        td {
+            padding: 5px;
+            text-align: left;
+        }
+
+        th {
+            font-size: xx-large;
+            font-weight: bolder;
+        }
+
+        td {
+            font-weight: 600;
+        }
+
+        table#postfetch,
+        table#postfetch td,
+        table#postxhr,
+        table#postxhr td {
+            border: none;
+            background-color: thistle;
+            padding: 1px;
+        }
+
+        .start {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container" role="main">
+        <h1><a id="channel" href="https://www.youtube.com/c/qaboxletstest/playlists">QA BOX LET'S TEST</a></h1>
+        <ul>
+            <li><a href="https://youtu.be/7iZwZ1xhnVw" target="_blank">CSS SELECTORS</a></li>
+            <li><a href="https://www.youtube.com/playlist?list=PLMZdod-kiMhL-b0OqCEt4Ld6faDtOVeGZ"
+                    target="_blank">JQUERY FOR
+                    CYPRESS</a></li>
+            <li><a href="https://youtube.com/playlist?list=PLMZdod-kiMhLl5y1G14nzXk-PUEs4mmyx" target="_blank">MOCHA,
+                    CHAI, SINON & CHAI-JQUERY</a></li>
+            <li><a href="https://www.youtube.com/playlist?list=PLMZdod-kiMhJnRl689MsoOzgbBpUGvSzz"
+                    target="_blank">XPATH</a>
+            </li>
+            <li><a href="https://youtube.com/playlist?list=PLMZdod-kiMhKBxYSWwp7uqHc7zJZbFnRf" target="_blank">NODEJS
+                    BASICS</a></li>
+            <li><a href="https://youtube.com/playlist?list=PLMZdod-kiMhK7q5R6W-owyNhxHUJ3pf1Y"
+                    target="_blank">JAVASCRIPT</a>
+            </li>
+        </ul>
+        <fieldset id="xhr">
+            <legend>INTERCEPT XHR</legend>
+            <fieldset>
+                <legend>GET</legend>
+                <table id="xhrusers">
+                    <thead>
+                        <tr>
+                            <td>ID</td>
+                            <td>NAME</td>
+                            <td>USERNAME</td>
+                            <td>EMAIL</td>
+                            <td>PHONE</td>
+                            <td>WEBSITE</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class='start' colspan="6">No data to display!!!</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br />
+                <div class="btnsOne">
+                    <button id="loadThreeUsersXHR">Load 3 Users</button>
+                    <button id="loadFiveUsersXHR">Load 5 Users</button>
+                    <button id="loadSpecificUserXHR">Load 1 User</button>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>POST</legend>
+                <table id="postxhr">
+                    <tbody>
+                        <tr>
+                            <td><label for="xhrname">Name</label></td>
+                            <td><input type="text" id="xhrname" name="xhrname" placeholder="enter your name" /></td>
+                        </tr>
+                        <tr>
+                            <td><label for="xhremail">Email</label></td>
+                            <td><input type="email" id="xhremail" name="xhremail" placeholder="enter your email" /></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><button id='xhrbtn'>POST A USER</button></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><span id='xhrspan'></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </fieldset>
+        </fieldset>
+        <fieldset id="fetch">
+            <legend>INTERCEPT FETCH</legend>
+            <fieldset>
+                <legend>GET</legend>
+                <table id="fetchusers">
+                    <thead>
+                        <tr>
+                            <td>ID</td>
+                            <td>NAME</td>
+                            <td>USERNAME</td>
+                            <td>EMAIL</td>
+                            <td>PHONE</td>
+                            <td>WEBSITE</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class='start' colspan="6">No data to display!!!</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br />
+                <div class="btnsOne">
+                    <button id="loadThreeUsersFETCH">Load 3 Users</button>
+                    <button id="loadFiveUsersFETCH">Load 5 Users</button>
+                    <button id="loadSpecificUserFETCH">Load 1 User</button>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>POST</legend>
+                <table id="postfetch">
+                    <tbody>
+                        <tr>
+                            <td><label for="fetchname">Name</label></td>
+                            <td><input type="text" id="fetchname" name="fetchname" placeholder="enter your name" /></td>
+                        </tr>
+                        <tr>
+                            <td><label for="fetchemail">Email</label></td>
+                            <td><input type="email" id="fetchemail" name="fetchemail" placeholder="enter your email" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><button id="fetchbtn">POST A USER</button></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><span id='fetchspan'></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </fieldset>
+        </fieldset>
+    </div>
+    <script>
+        let baseURL = "https://jsonplaceholder.typicode.com/users"
+        let btnThreeXHR = document.getElementById('loadThreeUsersXHR')
+        let btnFiveXHR = document.getElementById('loadFiveUsersXHR')
+        let btnOneXHR = document.getElementById('loadSpecificUserXHR')
+        let btnThreeFETCH = document.getElementById('loadThreeUsersFETCH')
+        let btnFiveFETCH = document.getElementById('loadFiveUsersFETCH')
+        let btnOneFETCH = document.getElementById('loadSpecificUserFETCH')
+
+        let xhrbtn = document.getElementById('xhrbtn')
+        let xhrspan = document.getElementById('xhrspan')
+        let fetchbtn = document.getElementById('fetchbtn')
+        let fetchspan = document.getElementById('fetchspan')
+
+        function usersXHR(method, url, body = null) {
+            return new Promise((resolve, reject) => {
+                const xhr = new XMLHttpRequest()
+                xhr.open(method, url)
+                xhr.responseType = 'json'
+                xhr.setRequestHeader('Content-Type', 'application/json')
+                xhr.onload = function () {
+                    if (xhr.status >= 400) {
+                        reject(xhr.response)
+                    } else {
+                        resolve(xhr.response)
+                    }
+                }
+                xhr.onerror = function (err) {
+                    reject(xhr.response)
+                }
+                if (method.toLowerCase() === 'get') {
+                    xhr.send()
+                } else {
+                    xhr.send(JSON.stringify(body))
+                }
+            })
+        }
+
+        function tableBody(bodySelector, res) {
+            let str = ""
+            let tableBodyContainer = document.querySelector(bodySelector)
+            while (tableBodyContainer.hasChildNodes()) {
+                tableBodyContainer.removeChild(tableBodyContainer.lastChild);
+            }
+            if (Array.isArray(res)) {
+                res.forEach(element => {
+                    str += `<tr>
+                            <td>${element.id}</td>
+                            <td>${element.name}</td>
+                            <td>${element.username}</td>
+                            <td>${element.email}</td>
+                            <td>${element.phone}</td>
+                            <td>${element.website}</td>
+                        </tr>`
+                });
+            } else {
+                str += `<tr>
+                            <td>${res.id}</td>
+                            <td>${res.name}</td>
+                            <td>${res.username}</td>
+                            <td>${res.email}</td>
+                            <td>${res.phone}</td>
+                            <td>${res.website}</td>
+                        </tr>`
+            }
+            tableBodyContainer.innerHTML = str;
+        }
+
+        function readData(nameSel, emailSel) {
+            let nameElm = document.getElementById(nameSel)
+            let emailElm = document.getElementById(emailSel)
+            return valObj = {
+                name: nameElm.value,
+                email: emailElm.value
+            }
+        }
+
+        function clearFields(nameSel, emailSel) {
+            let nameElm = document.getElementById(nameSel)
+            let emailElm = document.getElementById(emailSel)
+            nameElm.value = ""
+            emailElm.value = ""
+        }
+
+        btnThreeXHR.onclick = function () {
+            let url = baseURL + "?_limit=3"
+            usersXHR('GET', url).then(res => {
+                tableBody('#xhrusers > tbody', res)
+            }).catch(err => {
+                console.log(err)
+            })
+        }
+
+        btnFiveXHR.onclick = function () {
+            let url = baseURL + "?_limit=5"
+            usersXHR('GET', url).then(res => {
+                tableBody('#xhrusers > tbody', res)
+            }).catch(err => {
+                console.log(err)
+            })
+        }
+
+        btnOneXHR.onclick = function () {
+            let url = baseURL + "/8"
+            usersXHR('GET', url).then(res => {
+                tableBody('#xhrusers > tbody', res)
+            }).catch(err => {
+                console.log(err)
+            })
+        }
+
+        xhrbtn.onclick = function () {
+            const body = readData('xhrname', 'xhremail')
+            usersXHR('POST', baseURL, body).then(res => {
+                xhrspan.innerHTML = `Successful : ${res.id} - ${res.name} - ${res.email}`
+                clearFields('xhrname', 'xhremail')
+            }).catch(err => {
+                console.log(err)
+            })
+        }
+
+        function usersFetch(method, url, body = null) {
+            if (method.toLowerCase() === 'get') {
+                return fetch(url).then(res => {
+                    return res.json()
+                })
+            }
+            else if (method.toLowerCase() === 'post') {
+                const headers = {
+                    'Content-Type': 'application/json'
+                }
+                return fetch(url, {
+                    method: method,
+                    headers: headers,
+                    body: JSON.stringify(body)
+                }).then(res => res.json())
+            } else {
+                console.log('Invalid method type')
+            }
+        }
+
+        btnThreeFETCH.onclick = function () {
+            let url = baseURL + "?_limit=3"
+            usersFetch('GET', url).then(res => {
+                tableBody('#fetchusers > tbody', res)
+            }).catch(err => {
+                console.log(err)
+            })
+        }
+
+        btnFiveFETCH.onclick = function () {
+            let url = baseURL + "?_limit=5"
+            usersFetch('GET', url).then(res => {
+                tableBody('#fetchusers > tbody', res)
+            }).catch(err => {
+                console.log(err)
+            })
+        }
+
+        btnOneFETCH.onclick = function () {
+            let url = baseURL + "/10"
+            usersFetch('GET', url).then(res => {
+                tableBody('#fetchusers > tbody', res)
+            }).catch(err => {
+                console.log(err)
+            })
+        }
+
+        fetchbtn.onclick = function () {
+            const body = readData('fetchname', 'fetchemail')
+            usersFetch('POST', baseURL, body).then(res => {
+                fetchspan.innerHTML = `Successful : ${res.id} - ${res.name} - ${res.email}`
+                clearFields('fetchname', 'fetchemail')
+            }).catch(err => {
+                console.log(err)
+            })
+        }
+
+
+    </script>
+</body>
+
+</html>

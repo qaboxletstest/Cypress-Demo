@@ -32,7 +32,7 @@
       },
       "serverEnabled": true,
       "serverHost": "localhost",
-      "serverPort": 2121,
+      "serverPort": 3000,
       "updateSnapshots": false,
       "backgroundBlend": "difference"
     }

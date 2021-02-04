@@ -27,7 +27,7 @@ class Circle {
 
 var y = 50;
 var dy = 0;
-var radius = 30;
+var radius = 40;
 var circleArray = [];
 
 function init(color) {

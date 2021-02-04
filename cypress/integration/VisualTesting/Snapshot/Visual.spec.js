@@ -3,6 +3,11 @@ describe("Visual Test Suite", () => {
     cy.visit("/visualtesting.html");
     cy.viewport(1000, 980);
   });
+
+  it("Visual Test Case Document", () => {
+    cy.document().toMatchImageSnapshot();
+  });
+
   it("Visual Test Case Initial State", () => {
     cy.get("canvas").toMatchImageSnapshot();
   });
@@ -25,9 +30,5 @@ describe("Visual Test Suite", () => {
   it("Visual Test Case Reset State", () => {
     cy.get("#reset").click();
     cy.get("canvas").toMatchImageSnapshot();
-  });
-
-  it("Visual Test Case Document", () => {
-    cy.document().toMatchImageSnapshot();
   });
 });

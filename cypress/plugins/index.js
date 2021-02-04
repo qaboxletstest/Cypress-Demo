@@ -22,4 +22,5 @@ module.exports = (on, config) => {
   // `config` is the resolved Cypress config
   initPlugin(on, config);
   on("task", percyHealthCheck);
+  return config;
 };

@@ -1,0 +1,7 @@
+{
+  "$schema": "https://on.cypress.io/cypress.schema.json",
+  "baseUrl": "http://127.0.0.1:5500/Help%20Folder",
+  "integrationFolder": "cypress/integration/NetworkInterception",
+  "screenshotOnRunFailure": false,
+  "video": false
+}
