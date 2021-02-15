@@ -40,7 +40,10 @@
     "mocha": "^8.2.1",
     "mochawesome": "^6.2.1",
     "mochawesome-merge": "^4.2.0",
-    "mochawesome-report-generator": "^5.1.0"
+    "mochawesome-report-generator": "^5.1.0",
+    "mysql": "^2.18.1",
+    "sync-sql": "^1.0.2",
+    "xlsx": "^0.16.9"
   },
   "devDependencies": {
     "@4tw/cypress-drag-drop": "^1.4.0"
