@@ -28,8 +28,8 @@ module.exports = (on, config) => {
   on("task", {
     percyHealthCheck: percyHealthCheck,
     noparam: noparam,
-    log: myLog,
-    objLog: myObjLog,
+    singleParam: singleParam,
+    multipleParam: multipleParam,
     generateJSONFromExcel: generateJSONFromExcel,
     getDBDataSync: getDBDataSync,
     getDBDataAsync: getDBDataAsync,
@@ -44,13 +44,13 @@ function noparam() {
 }
 
 // With Param - Single Arg
-function myLog(message) {
+function singleParam(message) {
   console.log(message);
   return "OK";
 }
 
 // With Param - Multiple Args
-function myObjLog(obj) {
+function multipleParam(obj) {
   console.log(`Hello ${obj.name}, you are ${obj.age} years old`);
   return "OK";
 }
