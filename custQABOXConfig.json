@@ -1,0 +1,5 @@
+{
+  "$schema": "https://on.cypress.io/cypress.schema.json",
+  "baseUrl": "https://react-redux.realworld.io",
+  "integrationFolder": "cypress/integration/QABOX"
+}

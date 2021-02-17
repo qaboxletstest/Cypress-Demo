@@ -22,7 +22,8 @@
     "cy:api": "cypress open --config-file ./custAPIConfig.json",
     "cy:snapshot": "cypress open --config-file ./custVisualSnapshotConfig.json",
     "cy:percy": "npx percy exec -- cypress run --config-file ./custVisualPercyConfig.json",
-    "cy:intercept": "cypress open --config-file ./custInterceptConfig.json"
+    "cy:intercept": "cypress open --config-file ./custInterceptConfig.json",
+    "cy:qabox": "cypress open --config-file ./custQABOXConfig.json"
   },
   "keywords": [],
   "author": "QA BOX LET'S TEST",
