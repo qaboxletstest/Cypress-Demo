@@ -1,7 +1,7 @@
 describe("Mixing Sync & Async Code", () => {
-  beforeEach(() => {
-    cy.visit("/#/login?_k=ocipx1");
-  });
+  // beforeEach(() => {
+  //   cy.visit("/#/login?_k=ocipx1");
+  // });
   it.skip("Concept", () => {
     console.log("First Log");
     cy.get('input[type="email"]').type("qaboxletstest@gmail.com");
@@ -52,7 +52,7 @@ describe("Loop Usage and Break Loop", () => {
     }
   });
 
-  it.only("Example - Match an anchor text and click on it", () => {
+  it.skip("Example - Match an anchor text and click on it", () => {
     cy.visit("/#/login?_k=ocipx1");
     let arr = [];
     cy.get("a")
@@ -68,4 +68,114 @@ describe("Loop Usage and Break Loop", () => {
         }
       });
   });
+});
+
+describe("Recursion and Pagination", () => {
+  it.skip("Recursion", () => {
+    function test(index) {
+      // Self Invoke - Recursion
+      // console.log(index);
+      // test(++index);
+      if (index >= 10) {
+        return false;
+      } else {
+        console.log(index);
+        test(++index);
+      }
+    }
+    test(0);
+  });
+
+  it.only("Pagination", () => {
+    cy.visit(
+      "https://examples.bootstrap-table.com/template.html?v=134&url=options/table-pagination.html"
+    );
+    findItem("Item 2");
+  });
+
+  // Steps
+  // 1. Build Mechanism to Iterate through Pages - Note - Page elements are refreshed
+  // 2. Build Logic to Iterate through the table
+  // 3. Once matching record is found, build logic to break all the loops
+
+  function findItem(value) {
+    function findInPage(index) {
+      let found = false;
+      cy.get("li.page-item:not(.page-pre):not(.page-next)").as("pages");
+      cy.get("@pages")
+        .its("length")
+        .then((len) => {
+          if (index >= len) {
+            return false;
+          } else {
+            cy.get("@pages")
+              .eq(index)
+              .click();
+            cy.get("table#table tr > td:nth-child(2)")
+              .each((itemNameEl) => {
+                const itemText = itemNameEl.text();
+                console.log(itemText);
+                if (itemText === value) {
+                  found = true;
+                  return false;
+                }
+              })
+              .then(() => {
+                if (!found) {
+                  findInPage(++index);
+                }
+              });
+          }
+        });
+
+      // cy.get("@pages")
+      //   .its("length")
+      //   .then((len) => [...Array(len).keys()])
+      //   .each((index) => {
+      //     cy.get("@pages")
+      //       .eq(index)
+      //       .click();
+      //     cy.get("table#table tr > td:nth-child(2)").each((itemNameEl) => {
+      //       const itemText = itemNameEl.text();
+      //       console.log(itemText);
+      //       if (itemText === value) {
+      //         return false;
+      //       }
+      //     });
+      //   });
+    }
+    findInPage(0);
+  }
+
+  // function findItem(value) {
+  //   function findInPage(index) {
+  //     let found = false;
+  //     cy.get("li.page-item:not(.page-pre):not(.page-next)").as("pages");
+  //     cy.get("@pages")
+  //       .its("length")
+  //       .then((len) => {
+  //         if (index >= len) {
+  //           return false;
+  //         } else {
+  //           cy.get("@pages")
+  //             .eq(index)
+  //             .click();
+  //           cy.get("table#table tr>td:nth-child(2)")
+  //             .each((itemNameEl) => {
+  //               console.log(itemNameEl.text());
+  //               if (itemNameEl.text() === value) {
+  //                 found = true;
+  //                 return false;
+  //               }
+  //             })
+  //             .then(() => {
+  //               if (!found) {
+  //                 findInPage(++index);
+  //               }
+  //             });
+  //         }
+  //       });
+  //   }
+  //   findInPage(0);
+  // }
 });
